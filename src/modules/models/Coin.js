@@ -7,16 +7,41 @@ const coinShema = mongoose.Schema({
         required: [true, 'Name is required'],
         unique: true,
     },
-    website: {
+    price: {
+        type: Number,
+        required: [true, 'Price is required'],
+        unique: true,
+    },
+    oneHr: {
+        type: Number,
+        required: [true, 'Hourly rate is required'],
+        unique: true,
+    },
+    twentyfourHr: {
         type: String,
-        required: [true, 'website is required'],
+        required: [true, 'Daily rate is required'],
+        unique: true,
     },
-    explorers: {
-        type: Array,
+    volume: {
+        type: Number,
+        required: [true, 'volume is required'],
+        unique: true,
     },
-    community: {
+    marketCap: {
+        type: Number,
+        required: [true, 'Market cap value is required'],
+        unique: true,
+    },
+    liquidity: {
+        type: Number,
+        required: [true, 'Liquidity value is required'],
+        unique: true,
+    },
+    weeklyGraph: {
         type: Array,
-    }
+        required: [true, 'Weekly graph is required'],
+        unique: true,
+    },
 }, {
     timestamps: true,
 });
