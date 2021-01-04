@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
+var coinSchema = require('./Coin.js');
 
 const exchangeShema = mongoose.Schema({
     name: {
@@ -14,14 +15,16 @@ const exchangeShema = mongoose.Schema({
     },
     volume: {
         type: Number,
-        required: [true, 'Volume is required'],
-        unique: true,
+        required: [true, 'Volume is required']
     },
     trust: {
         type: Boolean,
-        required: [true, 'Trust value is required'],
-        unique: true,
+        required: [true, 'Trust value is required']
     },
+    coin: {
+        type: coinSchema,
+        required: [true, 'coin value is required']
+    }
 }, {
     timestamps: true,
 });

@@ -9,23 +9,19 @@ const coinShema = mongoose.Schema({
     },
     price: {
         type: Number,
-        required: [true, 'Price is required'],
-        unique: true,
+        required: [true, 'Price is required']
     },
     oneHr: {
         type: Number,
-        required: [true, 'Hourly rate is required'],
-        unique: true,
+        required: [true, 'Hourly rate is required']
     },
     twentyfourHr: {
         type: String,
-        required: [true, 'Daily rate is required'],
-        unique: true,
+        required: [true, 'Daily rate is required']
     },
     volume: {
         type: Number,
-        required: [true, 'volume is required'],
-        unique: true,
+        required: [true, 'volume is required']
     },
     marketCap: {
         type: Number,
@@ -34,13 +30,11 @@ const coinShema = mongoose.Schema({
     },
     liquidity: {
         type: Number,
-        required: [true, 'Liquidity value is required'],
-        unique: true,
+        required: [true, 'Liquidity value is required']
     },
     weeklyGraph: {
         type: Array,
-        required: [true, 'Weekly graph is required'],
-        unique: true,
+        required: [true, 'Weekly graph is required']
     },
 }, {
     timestamps: true,
