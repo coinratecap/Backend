@@ -2,14 +2,15 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const coinShema = mongoose.Schema({
-    id: {
+    code: {
         type: String,
-        required: [true, 'ID is required'],
+        required: [true, 'Code is required'],
         unique: true,
     },
     name: {
         type: String,
         required: [true, 'Name is required'],
+        unique: true,
     },
     price: {
         type: Number,
