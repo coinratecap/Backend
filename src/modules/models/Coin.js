@@ -2,10 +2,14 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const coinShema = mongoose.Schema({
+    id: {
+        type: String,
+        required: [true, 'ID is required'],
+        unique: true,
+    },
     name: {
         type: String,
         required: [true, 'Name is required'],
-        unique: true,
     },
     price: {
         type: Number,
@@ -21,12 +25,11 @@ const coinShema = mongoose.Schema({
     },
     volume: {
         type: Number,
-        required: [true, 'volume is required']
+        required: [true, 'Volume is required']
     },
     marketCap: {
         type: Number,
         required: [true, 'Market cap value is required'],
-        unique: true,
     },
     liquidity: {
         type: Number,
