@@ -29,7 +29,27 @@ const coinShema = mongoose.Schema({
     },
     marketCap: {
         type: Number,
-        required: [true, 'Market cap value is required'],
+        required: [true, 'Market Cap value is required'],
+    },
+    marketCapRank: {
+        type: Number,
+        required: [true, 'Market Cap rank is required'],
+    },
+    maxSupply: {
+        type: Number,
+        required: [true, 'Max Supply is required'],
+    },
+    allTimeHigh: {
+        type: Number,
+        required: [true, 'All Time High is required'],
+    },
+    allTimeLow: {
+        type: Number,
+        required: [true, 'All Time Low is required'],
+    },
+    circulatingSupply: {
+        type: Number,
+        required: [true, 'Circulating Supply is required'],
     },
     liquidity: {
         type: Number,
