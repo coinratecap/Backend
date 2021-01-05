@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
-const coinShema = mongoose.Schema({
+const coinSchema = mongoose.Schema({
     code: {
         type: String,
         required: [true, 'Code is required'],
@@ -64,7 +64,7 @@ const coinShema = mongoose.Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model("Coin", coinShema);
-coinShema.plugin(uniqueValidator, {
+module.exports = mongoose.model("Coin", coinSchema);
+coinSchema.plugin(uniqueValidator, {
     message: `{PATH} already in use`
 });

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
-const exchangeShema = mongoose.Schema({
+const exchangeSchema = mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Name is required'],
@@ -28,7 +28,7 @@ const exchangeShema = mongoose.Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model("Exchange", exchangeShema);
-exchangeShema.plugin(uniqueValidator, {
+module.exports = mongoose.model("Exchange", exchangeSchema);
+exchangeSchema.plugin(uniqueValidator, {
     message: `{PATH} already in use`
 });
