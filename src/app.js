@@ -5,12 +5,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const adminRouter = require('./routes/admin');
-const usersRouter = require('./routes/users');
+const adminRouter = require('./modules/routes/admin');
+const usersRouter = require('./modules/routes/users');
 
 const app = express();
 
-require('./models/db');
+require('./config/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
