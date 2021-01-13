@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
+const coin = require("./Coin");
+
 const exchangeSchema = mongoose.Schema(
   {
     id: {
@@ -49,7 +51,7 @@ const exchangeSchema = mongoose.Schema(
       required: [true, "Reddit URL is required"],
     },
     coins: {
-      type: [String],
+      type: [coin],
     },
   },
   {
@@ -61,4 +63,3 @@ module.exports = mongoose.model("Exchange", exchangeSchema);
 exchangeSchema.plugin(uniqueValidator, {
   message: `{PATH} already in use`,
 });
-
