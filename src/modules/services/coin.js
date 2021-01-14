@@ -20,6 +20,7 @@ exports.editCoinDetails = async (payload, id) => {
 
 
 exports.getCoinById = async id => {
+    // console.log(id);
     const coin = await Coin.findById(id);
     return coin
 }

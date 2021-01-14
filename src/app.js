@@ -11,6 +11,10 @@ const usersRouter = require('./modules/routes/users');
 const app = express();
 
 require('./config/db');
+require("./modules/route-handlers")(app);
+
+app.use(express.static(__dirname + '/public'));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
