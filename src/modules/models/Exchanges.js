@@ -51,7 +51,7 @@ const exchangeSchema = mongoose.Schema(
       required: [true, "Reddit URL is required"],
     },
     coins: {
-      type: [coin],
+      type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Coin" }],
     },
   },
   {
