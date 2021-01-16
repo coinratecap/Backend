@@ -5,7 +5,7 @@ const Exchanges = require("../models/Exchanges");
  * @param {string} coinId - id of coin to add to exchange
  * @returns {Promise} The exchange
  */
-async function AddCoinToExchange(exchangeId, coinId) {
+exports.AddCoinToExchange = async (exchangeId, coinId) => {
   if (!exchangeId || typeof exchangeId !== "string") {
     throw new TypeError(
       `Invalid argument type, expected string but got ${typeof exchangeId}`
@@ -22,8 +22,4 @@ async function AddCoinToExchange(exchangeId, coinId) {
   await exchange.coins.push(coinId);
 
   return exchange;
-}
-
-module.exports = {
-  AddCoinToExchange,
 };
