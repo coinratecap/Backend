@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/user.controller');
+const passport = require('passport')
 
 router.use(express.json());
 /* GET home page. */
