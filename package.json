@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
-    "dev:watch": "nodemon ./src/app"
+    "dev:watch": "nodemon ./src/bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -15,6 +16,7 @@
     "http-errors": "~1.6.3",
     "i": "^0.3.6",
     "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.8",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
