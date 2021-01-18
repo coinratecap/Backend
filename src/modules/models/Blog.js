@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const blogSchema = mongoose.Schema({
+    id: {
+        type: String,
+        required: [true, 'Id is required'],
+        unique: true,
+    },
     title: {
         type: String,
         required: [true, 'Title is required'],
@@ -13,6 +18,10 @@ const blogSchema = mongoose.Schema({
     },
     shortDescription: {
         type: String,
+    },
+    coverImage: {
+        type: String,
+        required: [true, 'Cover Image  is required'],
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
