@@ -5,16 +5,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const adminRouter = require('./modules/routes/admin');
-const usersRouter = require('./modules/routes/users');
-
 const app = express();
 
 require('./config/db');
-require("./modules/route-handlers")(app);
+require('./config/passport')
 
 app.use(express.static(__dirname + '/public'));
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,13 +18,14 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', usersRouter);
-app.use('/admin', adminRouter);
+require("./modules/route-handlers")(app);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

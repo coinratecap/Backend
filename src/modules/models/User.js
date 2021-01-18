@@ -17,18 +17,18 @@ const userSchema = mongoose.Schema({
   },
   gender: {
     type: String,
-    required: [true, 'Gender is required'],
+    // required: [true, 'Gender is required'],
     enum: ['male', 'female', 'others']
   },
   phone: {
     type: String,
-    required: [true, 'Phone is required'],
+    // required: [true, 'Phone is required'],
     unique: true,
 
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   photo: {
     type: String,

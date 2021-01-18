@@ -5,7 +5,8 @@ const {
 } = require('../../utils/bcrypt')
 const {
     sign
-} = require("../../utils/jwt")
+} = require("../../utils/jwt");
+const passport = require('passport');
 
 
 exports.registerUser = async (req, res) => {
@@ -65,7 +66,6 @@ exports.loginUser = async (req, res, next) => {
                 status: 400
             })
         }
-
     } catch (err) {
         console.log(err)
         res.status(400).json({
@@ -89,4 +89,19 @@ exports.getAllUsers = async (req, res) => {
             status: false
         })
     }
+}
+
+exports.authenticateUserWithGoogle = passport.authenticate('google', {
+    scope: ['profile']
+})
+
+exports.authenticateUserWithFacebook = passport.authenticate('facebook', {
+    scope: ['profile']
+})
+
+exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
+
+}
+exports.handleGoogleAuthenticationCallback = async (req, res, next) => {
+
 }
