@@ -1,6 +1,11 @@
 # Backend
 This is the backend of coinratecap
 
+The Backend project structure flow goes this way
+Model --- Services --- Controllers ---- Routes ---- Route handler ---- root app.js file
+
+Note that any form of route handler should be written in the root app.js file
+
 ## Donate
 
 All donations will go to thenewboston to help fund the team to continue to develop the community and create new content.
