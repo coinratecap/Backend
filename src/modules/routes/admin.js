@@ -1,10 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const homeCtrl = require("../controllers/admin/home");
+const express = require('express')
+const adminController = require("../controllers/admin.controller");
 
-router.use(express.json());
-/* GET home page. */
-router.get("/", homeCtrl.home);
-router.post("/addCoinToExchange", homeCtrl.addCoinToExchange);
+const router = express.Router();
+
+router.post("/register", adminController.registerAdmin);
+router.post("/login", adminController.loginAdmin);
+router.get("/", adminController.getAllAdmins)
 
 module.exports = router;
