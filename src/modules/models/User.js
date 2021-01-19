@@ -15,20 +15,26 @@ const userSchema = mongoose.Schema({
     required: [true, 'Email is required'],
     unique: true,
   },
+  facebookId: {
+    type: String,
+  },
+  googleId: {
+    type: String,
+    required: false,
+  },
   gender: {
     type: String,
-    // required: [true, 'Gender is required'],
+    required: [true, 'Gender is required'],
     enum: ['male', 'female', 'others']
   },
   phone: {
     type: String,
-    // required: [true, 'Phone is required'],
+    required: false,
     unique: true,
-
   },
   password: {
     type: String,
-    // required: true,
+    required: false,
   },
   photo: {
     type: String,

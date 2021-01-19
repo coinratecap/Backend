@@ -14,6 +14,25 @@ exports.getUserByEmail = async (email) => {
     return user
 }
 
+exports.getUserById = async (id) => {
+    const user = await User.findById(id);
+    return user
+}
+
+exports.getUserByFacebookId = async (id) => {
+    const user = await User.findOne({
+        facebookId: id
+    });
+    return user
+}
+
+exports.getUserByGoogleId = async (id) => {
+    const user = await User.findOne({
+        googleId: id
+    });
+    return user
+}
+
 // this is for users trying to reset password
 // this is to check if the generated token exists and the token expiration time is greater than the current date(Date.now())
 exports.getUserByResetToken = async (token, date) => {
@@ -32,6 +51,8 @@ exports.createUser = async payload => {
 }
 
 exports.updateUser = async (id, payload) => {
-    const user = await User.findByIdAndUpdate(id, payload, { new: true })
+    const user = await User.findByIdAndUpdate(id, payload, {
+        new: true
+    })
     return user
 }

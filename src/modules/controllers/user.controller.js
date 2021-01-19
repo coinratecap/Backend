@@ -98,8 +98,37 @@ exports.authenticateUserWithGoogle = passport.authenticate('google', {
 exports.authenticateUserWithFacebook = passport.authenticate('facebook', {})
 
 exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
-
+    const user = req.user
+    console.log('logging user : ', user)
+    if (!user) {
+        res.status(400).json({
+            msg: `Login Details`,
+            status: 400
+        })
+    } else {
+        let token = await sign(user);
+        res.status(200).json({
+            success: true,
+            token: token,
+            data: admin
+        })
+    }
 }
-exports.handleGoogleAuthenticationCallback = async (req, res, next) => {
 
+exports.handleGoogleAuthenticationCallback = async (req, res, next) => {
+    const user = req.user
+    console.log('logging user : ', user)
+    if (!user) {
+        res.status(400).json({
+            msg: `Login Details`,
+            status: 400
+        })
+    } else {
+        let token = await sign(user);
+        res.status(200).json({
+            success: true,
+            token: token,
+            data: admin
+        })
+    }
 }
