@@ -95,9 +95,7 @@ exports.authenticateUserWithGoogle = passport.authenticate('google', {
     scope: ['profile']
 })
 
-exports.authenticateUserWithFacebook = passport.authenticate('facebook', {
-    scope: ['profile']
-})
+exports.authenticateUserWithFacebook = passport.authenticate('facebook', {})
 
 exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
 

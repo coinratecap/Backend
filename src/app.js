@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const router = require('./modules/routes/coin');
 
 // const adminRouter = require('./modules/routes/admin');
 // const usersRouter = require('./modules/routes/users');
