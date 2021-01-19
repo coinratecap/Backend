@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const router = require('./modules/routes/coin');
+const passport = require('passport')
 
 // const adminRouter = require('./modules/routes/admin');
 // const usersRouter = require('./modules/routes/users');
@@ -18,6 +19,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(passport.initialize());
 app.use(express.json());
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
