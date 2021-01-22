@@ -92,12 +92,12 @@ exports.getAllUsers = async (req, res) => {
 }
 
 exports.authenticateUserWithGoogle = passport.authenticate('google', {
-    scope: ['profile'],
+    scope: ['profile','email'],
     session: false,
 })
 
 exports.authenticateUserWithFacebook = passport.authenticate('facebook', {
-    session: false
+    session: false,
 })
 
 exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
