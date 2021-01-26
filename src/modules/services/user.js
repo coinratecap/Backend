@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const FacebookInfo = require('../models/FacebookInfo')
+const GoogleInfo = require('../models/GoogleInfo')
 
 
 exports.getAllUsers = async () => {
@@ -10,26 +12,26 @@ exports.getAllUsers = async () => {
 exports.getUserByEmail = async (email) => {
     const user = await User.findOne({
         email: email
-    });
+    }).exec();
     return user
 }
 
 exports.getUserById = async (id) => {
-    const user = await User.findById(id);
+    const user = await User.findById(id).exec();
     return user
 }
 
 exports.getUserByFacebookId = async (id) => {
-    const user = await User.findOne({
-        facebookId: id
-    });
+    const facebookInfo = await User.findOne({
+        "facebookInfo.facebookId": id
+    }).exec();
     return user
 }
 
 exports.getUserByGoogleId = async (id) => {
     const user = await User.findOne({
-        googleId: id
-    });
+        "googleInfo.googleId": id
+    }).exec();
     return user
 }
 
@@ -41,7 +43,7 @@ exports.getUserByResetToken = async (token, date) => {
         resetPasswordExpires: {
             $gt: Date.now()
         }
-    });
+    }).exec();
     return user
 }
 
@@ -53,6 +55,6 @@ exports.createUser = async payload => {
 exports.updateUser = async (id, payload) => {
     const user = await User.findByIdAndUpdate(id, payload, {
         new: true
-    })
+    }).exec()
     return user
 }

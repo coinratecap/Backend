@@ -46,7 +46,7 @@ exports.loginUser = async (req, res, next) => {
 
         console.log(email, password);
         let user = await userRepository.getUserByEmail(email);
-        if (!user) {
+        if (!user || email.length == 0 || password.length == 0) {
             res.status(400).json({
                 msg: `Wrong Login Details`,
                 status: 400
@@ -92,28 +92,24 @@ exports.getAllUsers = async (req, res) => {
 }
 
 exports.authenticateUserWithGoogle = passport.authenticate('google', {
-    scope: ['profile','email'],
-    session: false,
+    scope: ['profile', 'email'],
 })
 
-exports.authenticateUserWithFacebook = passport.authenticate('facebook', {
-    session: false,
-})
+exports.authenticateUserWithFacebook = passport.authenticate('facebook', {})
 
 exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
     const user = req.user
     console.log('logging user : ', user)
     if (!user) {
         res.status(400).json({
-            msg: `Login Details`,
+            msg: `Invalid Login Details`,
             status: 400
         })
     } else {
-        let token = await sign(user);
         res.status(200).json({
             success: true,
-            token: token,
-            data: admin
+            msg: 'Google Login success',
+            user
         })
     }
 }
@@ -123,15 +119,15 @@ exports.handleGoogleAuthenticationCallback = async (req, res, next) => {
     console.log('logging user : ', user)
     if (!user) {
         res.status(400).json({
-            msg: `Login Details`,
+            msg: `Invalid Login Details`,
             status: 400
         })
     } else {
         let token = await sign(user);
         res.status(200).json({
             success: true,
-            token: token,
-            data: admin
+            msg: 'Google Login success',
+            user
         })
     }
 }
