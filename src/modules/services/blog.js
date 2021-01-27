@@ -25,7 +25,7 @@ exports.deletePost = async (id) => {
 exports.updatePost = async (id,payload) => {
     const post = await Blog.findOne({id})
     await Object.assign(post, payload);
-    await Blog.save()
+    await post.save()
     return post
 }
 
