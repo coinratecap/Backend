@@ -12,15 +12,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Last Name is required'],
   },
-  email: {
-    type: String,
-    required: [true, 'Email is required'],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
   facebookInfo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "FacebookInfo",
@@ -47,18 +38,12 @@ const userSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  resetPasswordToken: {
-    type: String
-  },
-  resetPasswordExpires: {
-    type: Date
-  }
 }, {
   timestamps: true,
 });
 
 userSchema.plugin(passportLocalMongoose, {
-  usernameField: 'email'
+  usernameField: 'email',
 })
 userSchema.plugin(uniqueValidator, {
   message: `{PATH} already in use`

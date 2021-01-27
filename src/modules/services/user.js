@@ -10,9 +10,7 @@ exports.getAllUsers = async () => {
 
 
 exports.getUserByEmail = async (email) => {
-    const user = await User.findOne({
-        email: email
-    }).exec();
+    const user = await User.findByUsername(email,false).exec();
     return user
 }
 
@@ -47,9 +45,14 @@ exports.getUserByResetToken = async (token, date) => {
     return user
 }
 
-exports.createUser = async payload => {
-    const user = await User.create(payload);
+exports.registerUser = async (payload, password) => {
+    const user = await User.register(payload, password);
     return user
+}
+
+exports.loginUser = async (email, password) => {
+    const result = await User.authenticate()(email,password)
+    return result;
 }
 
 exports.updateUser = async (id, payload) => {

@@ -44,6 +44,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session())
 
+//Logging the user
+app.use((req, res, next) => {
+  console.log('user = ', req.user)
+  next();
+})
 require("./modules/route-handlers")(app);
 
 

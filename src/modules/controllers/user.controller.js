@@ -7,7 +7,13 @@ const {
     sign
 } = require("../../utils/jwt");
 const passport = require('passport');
+const User = require('../models/User');
 
+
+exports.logoutUser = (req, res) => {
+    req.logout();
+    res.redirect('/v1/user/login')
+}
 
 exports.registerUser = async (req, res) => {
     try {
@@ -17,11 +23,11 @@ exports.registerUser = async (req, res) => {
             email: req.body.email,
             gender: req.body.gender,
             phone: req.body.phone,
-            password: await hash(req.body.password),
-            photo: req.body.photo
+            photo: req.body.photo,
         }
+        const password = req.body.password
 
-        let user = await userRepository.createUser(payload)
+        let user = await userRepository.registerUser(payload, password)
         res.status(200).json({
             msg: "user created",
             status: true,
@@ -38,32 +44,20 @@ exports.registerUser = async (req, res) => {
 
 
 exports.loginUser = async (req, res, next) => {
+    console.log('request after login : ', req)
     try {
         let {
             email,
             password
         } = req.body;
-
-        console.log(email, password);
-        let user = await userRepository.getUserByEmail(email);
-        if (!user || email.length == 0 || password.length == 0) {
-            res.status(400).json({
-                msg: `Wrong Login Details`,
-                status: 400
-            })
+        let loginResult = await userRepository.loginUser(email, password);
+        if (loginResult.error) {
+            throw loginResult.error
         }
-        let match = await compare(password, user.password);
-        if (match) {
-            let token = await sign(user);
+        if (loginResult.user) {
             res.status(200).json({
                 success: true,
-                token: token,
-                data: user
-            })
-        } else {
-            res.status(400).json({
-                msg: `Wrong Login Details`,
-                status: 400
+                data: loginResult.user
             })
         }
     } catch (err) {
