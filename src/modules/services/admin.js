@@ -1,11 +1,9 @@
 const Admin = require("../models/Admin");
 
-
 exports.getAllAdmins = async () => {
     const admins = await Admin.find();
     return admins;
 };
-
 
 exports.getAdminByEmail = async email => {
     const admin = await Admin.findOne({

@@ -13,7 +13,7 @@ class HomeCtrl {
         const { exchangeId, coins } = req.body;
 
         try {
-            coins.forEach((coin) => {
+            coins.forEach(async (coin) => {
                 await AddCoinToExchange(exchangeId, coin);
             })
 
