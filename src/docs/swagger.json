@@ -1,0 +1,97 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample Rest-Api services docs",
+        "version": "1.0.0",
+        "title": "Swagger Documentation"
+    },
+    "host": "localhost:3000",
+    "basePath": "/v1",
+    "tags": [
+        {
+            "name": "Exchange",
+            "description": "Add exchange coins given in body"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/admin/exchange": {
+            "post": {
+                "tags": [
+                    "addExchange"
+                ],
+                "summary": "Add exchange coins given in body",
+                "operationId": "addExchangeCoin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/record"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "record": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "name"
+                },
+                "volume": {
+                    "type": "string",
+                    "example": "Volume"
+                },
+                "trust": {
+                    "type": "string",
+                    "example": "trust"
+                },
+                "centralized": {
+                    "type": "string",
+                    "example": "centralized"
+                },
+                "image": {
+                    "type": "string",
+                    "example": "URL"
+                },
+                "website": {
+                    "type": "string",
+                    "example": "URL"
+                },
+                "facebook": {
+                    "type": "string",
+                    "example": "URL"
+                },
+                "twitter": {
+                    "type": "string",
+                    "example": "URL"
+                },
+                "reddit": {
+                    "type": "string",
+                    "example": "URL"
+                },
+                "coins": {
+                    "type": "string",
+                    "example": "coins"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

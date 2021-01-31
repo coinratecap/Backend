@@ -9,10 +9,10 @@ const User = require('../modules/models/User')
 const port = process.env.PORT || 3000
 
 passport.use(new FacebookStrategy({
-        clientID: process.env.FACEBOOK_APP_ID,
-        clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: '/v1/user/auth/facebook/callback'
-    },
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: '/v1/user/auth/facebook/callback'
+},
     function (accessToken, refreshToken, profile, done) {
         console.log('user profile is : ', profile)
         const {
@@ -31,10 +31,10 @@ passport.use(new FacebookStrategy({
 
 
 passport.use(new GoogleStrategy({
-        clientID: process.env.GOOGLE_APP_ID,
-        clientSecret: process.env.GOOGLE_APP_SECRET,
-        callbackURL: '/v1/user/auth/google/callback'
-    },
+    clientID: process.env.GOOGLE_APP_ID,
+    clientSecret: process.env.GOOGLE_APP_SECRET,
+    callbackURL: '/v1/user/auth/google/callback'
+},
     function (accessToken, refreshToken, profile, done) {
         const {
             emails,
