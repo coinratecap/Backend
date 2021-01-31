@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
+const passportLocalMongoose = require('passport-local-mongoose');
+
 
 const userSchema = mongoose.Schema({
   first_name: {
@@ -10,10 +12,17 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Last Name is required'],
   },
-  email: {
-    type: String,
-    required: [true, 'Email is required'],
-    unique: true,
+  facebookInfo: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "FacebookInfo",
+    required: false,
+  },
+  googleInfo: {
+    type: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "GoogleInfo"
+    }],
+    required: false,
   },
   gender: {
     type: String,
@@ -24,27 +33,19 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, 'Phone is required'],
     unique: true,
-
-  },
-  password: {
-    type: String,
-    required: true,
   },
   photo: {
     type: String,
     required: false,
   },
-  resetPasswordToken: {
-    type: String
-  },
-  resetPasswordExpires: {
-    type: Date
-  }
 }, {
   timestamps: true,
 });
 
-module.exports = mongoose.model("User", userSchema);
+userSchema.plugin(passportLocalMongoose, {
+  usernameField: 'email',
+})
 userSchema.plugin(uniqueValidator, {
   message: `{PATH} already in use`
 });
+module.exports = mongoose.model("User", userSchema);

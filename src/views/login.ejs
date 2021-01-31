@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>title</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Login Page for testing</h1>
+  <br>
+  <h2>Auth Status :</h2>
+  <h4>
+    <hr />
+    Status : <%= loginStatus %>
+      <br> <br>
+      User Data : <%= userData %>
+        <hr />
+  </h4>
+  <h2>Social Media Login</h2>
+  <a href="/v1/user/auth/facebook">Facebook</a>
+  <a href="/v1/user/auth/google">Google</a>
+  <br>
+
+  <h2>Local User Registration</h2>
+  <form action="/v1/user/register" method="POST">
+    <input name="email" placeholder="email" />
+    <input name="password" placeholder="password" />
+    <input name="first_name" placeholder="first name" />
+    <input name="last_name" placeholder="last name" />
+    <select name="gender">
+      <option value="male">male</option>
+      <option value="female">female</option>
+      <option value="others">others</option>
+    </select>
+    <input name="phone" placeholder="phone" />
+    <button>Register User</button>
+  </form>
+
+  <br>
+
+  <h2>Local login</h2>
+  <form action="/v1/user/login" method="POST">
+    <input name="email" />
+    <input name="password" />
+    <button>Login</button>
+  </form>
+</body>
+
+</html>

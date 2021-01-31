@@ -1,34 +1,55 @@
 require('dotenv').config()
+require('./config/db');
+require('./config/passport')
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-
-// const adminRouter = require('./modules/routes/admin');
-// const usersRouter = require('./modules/routes/users');
+const router = require('./modules/routes/coin');
+const passport = require('passport')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose')
 
 const app = express();
 
 
 app.use(express.static(__dirname + '/public'));
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(express.json());
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}));
+app.use(cookieParser());
 
-require('./config/db');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24
+  }
+}));
+app.use(passport.initialize());
+app.use(passport.session())
+
+//Logging the user
+app.use((req, res, next) => {
+  console.log('user = ', req.user)
+  next();
+})
 require("./modules/route-handlers")(app);
-
-
 
 
 // app.use('/', usersRouter);

@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const FacebookInfo = require('../models/FacebookInfo')
+const GoogleInfo = require('../models/GoogleInfo')
 
 
 exports.getAllUsers = async () => {
@@ -8,9 +10,26 @@ exports.getAllUsers = async () => {
 
 
 exports.getUserByEmail = async (email) => {
+    const user = await User.findByUsername(email,false).exec();
+    return user
+}
+
+exports.getUserById = async (id) => {
+    const user = await User.findById(id).exec();
+    return user
+}
+
+exports.getUserByFacebookId = async (id) => {
+    const facebookInfo = await User.findOne({
+        "facebookInfo.facebookId": id
+    }).exec();
+    return user
+}
+
+exports.getUserByGoogleId = async (id) => {
     const user = await User.findOne({
-        email: email
-    });
+        "googleInfo.googleId": id
+    }).exec();
     return user
 }
 
@@ -22,16 +41,23 @@ exports.getUserByResetToken = async (token, date) => {
         resetPasswordExpires: {
             $gt: Date.now()
         }
-    });
+    }).exec();
     return user
 }
 
-exports.createUser = async payload => {
-    const user = await User.create(payload);
+exports.registerUser = async (payload, password) => {
+    const user = await User.register(payload, password);
     return user
+}
+
+exports.loginUser = async (email, password) => {
+    const result = await User.authenticate()(email,password)
+    return result;
 }
 
 exports.updateUser = async (id, payload) => {
-    const user = await User.findByIdAndUpdate(id, payload, { new: true })
+    const user = await User.findByIdAndUpdate(id, payload, {
+        new: true
+    }).exec()
     return user
 }
