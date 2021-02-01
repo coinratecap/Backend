@@ -31,7 +31,17 @@ exports.getFacebookInfoByEmail = async (email) => {
 }
 
 exports.createFacebookInfo = async (payload) => {
-    return await FacebookInfo.create(payload)
+    const facebookUserInfo = await FacebookInfo.create(payload)
+
+    const user = await userRepository.getUserByEmail(facebookUserInfo.email)
+    if (user) {
+        console.log('old user exists with same email : ', user)
+        const updatedUser = await userRepository.updateUser(user.id, {
+            facebookInfo: facebookUserInfo.id
+        })
+        console.log('old user updated to : ', updatedUser)
+    }
+    return facebookUserInfo
 }
 
 exports.createGoogleInfo = async (payload) => {

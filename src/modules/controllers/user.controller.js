@@ -107,7 +107,7 @@ exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
     } else {
         res.status(200).json({
             success: true,
-            msg: 'Google Login success',
+            msg: 'Facebook Login success',
             user
         })
     }
