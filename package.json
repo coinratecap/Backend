@@ -32,6 +32,8 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
     "passport-session": "^1.0.2",
+    "swagger-jsdoc": "^6.0.2",
+    "swagger-ui-express": "^4.1.6",
     "uuid": "^8.3.2"
   }
 }
