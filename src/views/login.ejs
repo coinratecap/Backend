@@ -41,9 +41,14 @@
 
   <h2>Local login</h2>
   <form action="/v1/user/login" method="POST">
-    <input name="email" />
-    <input name="password" />
+    <input name="email" placeholder="email" />
+    <input name="password" placeholder="password" />
     <button>Login</button>
+  </form>
+
+  <br> <br> <br>
+  <form action="/v1/user/logout" method="GET">
+    <button>Logout</button>
   </form>
 </body>
 
