@@ -9,14 +9,21 @@ Note that any form of route handler should be written in the root app.js file
 ##  Coin Listing Methodology
 ### Price
 Using Bitcoin (BTC) as an example, and assuming we only track two exchanges, A and B:
+
 Exchange A: BTC/USD = USD 1,000 / BTC @ 15,000 BTC Trading Volume (rolling 24 hours)
+
 Exchange B: BTC/USD = USD 1,050 / BTC @ 10,000 BTC Trading Volume (rolling 24 hours)
 
 We will then calculate the global volume-weighted average price. In this case, it will be:
+
 BTC Price (USD)
+
 = [Volume % *  First Exchange USD Price] + [Volume % * Second Exchange USD Price]
+
 = [ 15,000 / (15,000 + 10,000) ] * USD 1,000 + [ 10,000 / (15,000 + 10,000) ] * USD 1,050
+
 = 0.6 * USD 1,000 + 0.4 * USD 1,050
+
 = USD 1020
 
 #### Why global volume-weighted average price?
