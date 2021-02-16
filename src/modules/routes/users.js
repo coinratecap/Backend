@@ -8,7 +8,7 @@ router.get('/login', (req, res) => res.render('login', {
     userData : req.user,
 }))
 
-router.post("/login", passport.authenticate('local'), userController.loginUser);
+router.post("/login", passport.authenticate('local'), userController.onSuccessfulLocalLogin);
 router.get("/logout", userController.logoutUser);
 router.post("/logout", userController.logoutUser);
 router.post("/register", userController.registerUser);

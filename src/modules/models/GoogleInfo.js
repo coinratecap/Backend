@@ -6,10 +6,6 @@ const GoogleInfoSchema = mongoose.Schema({
         type: String,
         required: false,
     },
-    displayName: {
-        type: String,
-        required: false,
-    },
     email: {
         type: String,
         required: false,
@@ -30,10 +26,6 @@ const GoogleInfoSchema = mongoose.Schema({
         unique: true,
     },
     birthday: {
-        type: String,
-        required: false,
-    },
-    profileUrl: {
         type: String,
         required: false,
     },

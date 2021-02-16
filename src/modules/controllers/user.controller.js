@@ -1,4 +1,6 @@
 const userRepository = require('../services/user');
+const socialMediaRepository = require('../services/socialmedia')
+
 const {
     hash,
     compare
@@ -28,6 +30,18 @@ exports.registerUser = async (req, res) => {
         const password = req.body.password
 
         let user = await userRepository.registerUser(payload, password)
+        let googleInfo = await socialMediaRepository.getGoogleInfoByEmail(user.email)
+        let facebookInfo = await socialMediaRepository.getFacebookInfoByEmail(user.email)
+        if (googleInfo) {
+            user = userRepository.updateUser(user.id, {
+                googleInfo
+            })
+        }
+        if (facebookInfo) {
+            user = userRepository.updateUser(user.id, {
+                facebookInfo
+            })
+        }
         res.status(200).json({
             msg: "user created",
             status: true,
@@ -43,29 +57,18 @@ exports.registerUser = async (req, res) => {
 }
 
 
-exports.loginUser = async (req, res, next) => {
-    console.log('request after login : ', req)
-    try {
-        let {
-            email,
-            password
-        } = req.body;
-        let loginResult = await userRepository.loginUser(email, password);
-        if (loginResult.error) {
-            throw loginResult.error
-        }
-        if (loginResult.user) {
-            res.status(200).json({
-                success: true,
-                data: loginResult.user
-            })
-        }
-    } catch (err) {
+exports.onSuccessfulLocalLogin = async (req, res, next) => {
+    const user = req.user
+    if (user) {
+        console.log('Logged in user : ', user)
+        res.redirect('/v1/user/login')
+    } else {
         console.log(err)
         res.status(400).json({
             error: err,
             status: false
         })
+
     }
 }
 
@@ -89,7 +92,9 @@ exports.authenticateUserWithGoogle = passport.authenticate('google', {
     scope: ['profile', 'email'],
 })
 
-exports.authenticateUserWithFacebook = passport.authenticate('facebook', {})
+exports.authenticateUserWithFacebook = passport.authenticate('facebook', {
+    scope: ['email', 'user_age_range', 'user_gender', 'user_birthday']
+})
 
 exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
     const user = req.user
@@ -102,7 +107,7 @@ exports.handleFacebookAuthenticationCallback = async (req, res, next) => {
     } else {
         res.status(200).json({
             success: true,
-            msg: 'Google Login success',
+            msg: 'Facebook Login success',
             user
         })
     }
@@ -117,7 +122,6 @@ exports.handleGoogleAuthenticationCallback = async (req, res, next) => {
             status: 400
         })
     } else {
-        let token = await sign(user);
         res.status(200).json({
             success: true,
             msg: 'Google Login success',

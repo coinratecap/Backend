@@ -18,10 +18,8 @@ const userSchema = mongoose.Schema({
     required: false,
   },
   googleInfo: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "GoogleInfo"
-    }],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "GoogleInfo",
     required: false,
   },
   gender: {
