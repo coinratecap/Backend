@@ -6,6 +6,8 @@ Model --- Services --- Controllers ---- Routes ---- Route handler ---- root app.
 
 Note that any form of route handler should be written in the root app.js file
 
+Create an **uploads** directory in case you want to store the media assets.
+
 ##  Coin Listing Methodology
 ### Price
 Using Bitcoin (BTC) as an example, and assuming we only track two exchanges, A and B:
