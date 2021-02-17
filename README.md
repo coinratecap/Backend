@@ -41,6 +41,19 @@ LTC/USD = 2,000 LTC
 
 Assuming 1 LTC = USD 100, the 24 hours trading volume for Litecoin will be 5,000 + 1,000 + 2,000 = 8,000 LTC or USD 800,000.
 
+### Market Capitalization (Cryptoasset)
+The Market Capitalization of a crypto asset is calculated using the following formula:
+
+Let:
+A = Current crypto asset price in USD
+B = Available supply of an asset
+
+Market Capitalization = A * B
+
+For example, the market capitalization of 0x is calculated by multiplying the Available Supply of ZRX with its price. Assuming the Available Supply of ZRX is 583,209,787 and the price of ZRX is USD 0.25, the market capitalization is then calculated as 583,209,787 * USD $0.25 = USD 145,802,446.75.
+
+
+
 ## Donate
 
 All donations will go to thenewboston to help fund the team to continue to develop the community and create new content.
