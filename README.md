@@ -31,6 +31,16 @@ BTC Price (USD)
 #### Why global volume-weighted average price?
 Because the higher the amount of BTC traded in a particular exchange, the higher it mush have an impact on the price of the BTC.  That way if some exchange has a high deviation in value of BTC but low volume traded, it will have a low impact on the price of the crypto in our platform.
 
+### Trading Volume (Cryptoasset)
+The trading volume for a crypto asset is the aggregate trading volume of all trading pairs of the crypto asset. Let’s assume Litecoin (LTC) is only traded on Exchange A and has BTC, ETH, and USD trading pairs with the following rolling 24 hours trading volume:
+
+Rolling 24 hours trading volume for LTC in Exchange A:
+LTC/BTC = 5,000 LTC
+LTC/ETH = 1,000 LTC
+LTC/USD = 2,000 LTC
+
+Assuming 1 LTC = USD 100, the 24 hours trading volume for Litecoin will be 5,000 + 1,000 + 2,000 = 8,000 LTC or USD 800,000.
+
 ## Donate
 
 All donations will go to thenewboston to help fund the team to continue to develop the community and create new content.
