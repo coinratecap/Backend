@@ -52,7 +52,8 @@ Market Capitalization = A * B
 
 For example, the market capitalization of 0x is calculated by multiplying the Available Supply of ZRX with its price. Assuming the Available Supply of ZRX is 583,209,787 and the price of ZRX is USD 0.25, the market capitalization is then calculated as 583,209,787 * USD $0.25 = USD 145,802,446.75.
 
-
+### Market Capitalization (Global)
+The Global Market Capitalization is the sum of the Market Capitalization of all projects tracked.
 
 ## Donate
 
