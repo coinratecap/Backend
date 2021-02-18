@@ -27,7 +27,6 @@ exports.registerAdmin = async (req, res) => {
     }
 }
 
-
 exports.loginAdmin = async (req, res, next) => {
     try {
         let {

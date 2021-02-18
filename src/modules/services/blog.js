@@ -12,22 +12,19 @@ exports.getAllPost = async () => {
 };
 
 exports.getPostDetails = async id => {
-    const post = await Blog.findOne({id})
+    const post = await Blog.findOne({ id })
     return post
 }
 
 exports.deletePost = async (id) => {
-    const post = Blog.findOne({id})
+    const post = Blog.findOne({ id })
     await Blog.deleteOne(post);
     return post
 }
 
-exports.updatePost = async (id,payload) => {
-    const post = await Blog.findOne({id})
+exports.updatePost = async (id, payload) => {
+    const post = await Blog.findOne({ id })
     await Object.assign(post, payload);
     await Blog.save()
     return post
 }
-
-
-

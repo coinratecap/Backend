@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
-    "dev:watch": "nodemon ./src/bin/www"
+    "dev:watch": "nodemon ./src/bin/www",
+    "seed":"npm run seed:coin",
+     "seed:coin": "node ./src/modules/seeders/coin.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

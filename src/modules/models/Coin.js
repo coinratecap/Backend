@@ -4,6 +4,7 @@ const uniqueValidator = require("mongoose-unique-validator");
 const coinSchema = mongoose.Schema({
     name: {
         type: String,
+        unique: true,
         required: [true, 'Name is required'],
     },
     symbol: {

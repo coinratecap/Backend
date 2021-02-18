@@ -5,7 +5,7 @@ exports.addPost = async (req, res) => {
     try {
         let payload = {
             id: uuidv4(),
-            title:req.body.title,
+            title: req.body.title,
             category: req.body.category,
             shortDescription: req.body.shortDescription,
             description: req.body.description,
@@ -67,18 +67,19 @@ exports.deletePost = async (req, res) => {
 exports.updatePost = async (req, res) => {
     try {
         let { id } = req.params;
-        if(req.file){
+        if (req.file) {
             let uploadImages = req.files;
             let coverImage = uploadImages.find(({ fieldname }) => fieldname === `coverImage`);
             req.body.coverImage = coverImage.path;
         }
-        let post = await blogServices.updatePost(id,req.body)
+        let post = await blogServices.updatePost(id, req.body)
         res.status(200).json({
             msg: "Post Updated",
             status: true,
             data: post
         })
     } catch (err) {
+        console.log(err)
         res.status(400).json({ error: err, status: false })
     }
 }
