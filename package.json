@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./src/bin/www",
+    "seed:coin":"node ./src/modules/seeder/coin.js",
+    "seed":"npm run seed:coin",
     "dev:watch": "nodemon ./src/bin/www"
   },
   "dependencies": {
