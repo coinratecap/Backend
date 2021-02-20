@@ -1,5 +1,5 @@
 
-const Exchange = require('../models/Exchanges')
+const Exchange = require('../models/Exchange')
 
 class ExchangeService {
     async add(body) {

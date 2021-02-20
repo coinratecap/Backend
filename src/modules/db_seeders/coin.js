@@ -1,16 +1,7 @@
 require("dotenv").config();
 const Coin = require("../models/Coin");
-const mongoose = require("mongoose");
-
-mongoose.connect(process.env.DB_URL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex: true,
-});
-
-let runner = async () => {
-    let coin = [
+exports.seedCoins = async () => {
+    const coins = [
         new Coin({
             name: "Bitcoin",
             symbol: "BTC",
@@ -36,29 +27,11 @@ let runner = async () => {
         }),
     ];
 
-    let done = 0;
-
-    for (var i = 0; i < coin.length; i++) {
-        coin[i].save((err, result) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(result);
-            }
-            done++;
-            if (done === coin.length) {
-                exit();
-            }
-        });
+    for (var i = 0; i < coins.length; i++) {
+        try {
+            console.log(await coins[i].save())
+        } catch (e) {
+            console.error(e)
+        }
     }
-};
-
-
-
-
-
-runner();
-
-let exit = () => {
-    mongoose.disconnect();
 };
