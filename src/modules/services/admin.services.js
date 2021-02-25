@@ -1,4 +1,4 @@
-const Exchanges = require("../models/Exchanges");
+const Exchanges = require("../models/Exchange");
 
 /** A function to allow admins add coins to exchanges.
  * @param {string} exchangeId - Id of exchange
