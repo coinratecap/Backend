@@ -14,7 +14,6 @@ const exchangeApiStructureSchema = mongoose.Schema({
     },
     endPointPath: {
         type: String,
-        required: true
     },
     queryParams: {
         type: Map,
