@@ -11,7 +11,7 @@ exports.seedExchangeApiStructures = async () => {
             coin: (await Coin.findOne({
                 symbol: 'BTC'
             })).id,
-            endPointPath: '',
+            endPointPathParam: '',
             queryParams: {
                 symbol: 'BTCUSD'
             },
@@ -29,7 +29,7 @@ exports.seedExchangeApiStructures = async () => {
             coin: (await Coin.findOne({
                 symbol: 'BTC'
             })).id,
-            endPointPath: '/BTC/USD',
+            endPointPathParam: '/BTC/USD',
             ///See https://www.npmjs.com/package/jsonpath for syntax reference
             priceJsonPath: '$.result.price',
 
@@ -43,7 +43,7 @@ exports.seedExchangeApiStructures = async () => {
             coin: (await Coin.findOne({
                 symbol: 'ETH'
             })).id,
-            endPointPath: '',
+            endPointPathParam: '',
             queryParams: {
                 symbol: 'ETHUSD'
             },
@@ -60,7 +60,7 @@ exports.seedExchangeApiStructures = async () => {
             coin: (await Coin.findOne({
                 symbol: 'ETH'
             })).id,
-            endPointPath: '/ETH/USD',
+            endPointPathParam: '/ETH/USD',
             ///See https://www.npmjs.com/package/jsonpath for syntax reference
             priceJsonPath: '$.result.price',
 
