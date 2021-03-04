@@ -2,7 +2,8 @@ const CoinListing = require("../models/CoinListing");
 const ExchangeApiStructure = require('../models/ExchangeApiStructure')
 const fetch = require('node-fetch')
 const qs = require('qs')
-const jsonPath = require('jsonpath')
+const jsonPath = require('jsonpath');
+const {scheduleCron} = require("../../utils/cron");
 
 exports.fetchAllCoinsDataFromExchanges = async (jobId = '1') => {
     const allCoinApis = await ExchangeApiStructure.find()
@@ -34,3 +35,5 @@ exports.fetchAllCoinsDataFromExchanges = async (jobId = '1') => {
         })
     })
 }
+
+scheduleCron(exports.fetchAllCoinsDataFromExchanges)
