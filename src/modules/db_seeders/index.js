@@ -22,8 +22,8 @@ const initializeDb = async () => {
         useCreateIndex: true,
     });
 
-    // await seedCoins()
-    // await seedExchanges()
+    await seedCoins()
+    await seedExchanges()
     await seedExchangeApiStructures()
 
     await mongoose.disconnect()
