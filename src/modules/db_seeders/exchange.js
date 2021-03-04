@@ -1,9 +1,8 @@
 require("dotenv").config();
 const Coin = require("../models/Coin");
 const Exchange = require("../models/Exchange")
-const ExchangeApiStructure = require("../models/ExchangeApiStructure");
 
-exports.seedExchangeApiStructures = async () => {
+exports.seedExchanges = async () => {
     let exchangeApiStructures = [
         new Exchange({
             name: 'binance',
@@ -11,12 +10,12 @@ exports.seedExchangeApiStructures = async () => {
             trust: 1,
             trustRank: 1,
             centralized: false,
-            image: '',
-            website: '',
-            facebook: '',
-            twitter: '',
-            reddit: '',
-            coins: Coin.find(),
+            image: 'url',
+            website: 'url',
+            facebook: 'url',
+            twitter: 'url',
+            reddit: 'url',
+            coins: (await Coin.find()).map(c => c.id),
             apiEndPoint: 'https://api.binance.us/api/v3/ticker/24hr'
         }),
         new Exchange({
@@ -25,12 +24,12 @@ exports.seedExchangeApiStructures = async () => {
             trust: 1,
             trustRank: 1,
             centralized: false,
-            image: '',
-            website: '',
-            facebook: '',
-            twitter: '',
-            reddit: '',
-            coins: Coin.find(),
+            image: 'url',
+            website: 'url',
+            facebook: 'url',
+            twitter: 'url',
+            reddit: 'url',
+            coins: (await Coin.find()).map(c => c.id),
             apiEndPoint: 'https://api.kraken.com/0/public/Ticker'
         }),
         new Exchange({
@@ -39,12 +38,12 @@ exports.seedExchangeApiStructures = async () => {
             trust: 1,
             trustRank: 1,
             centralized: false,
-            image: '',
-            website: '',
-            facebook: '',
-            twitter: '',
-            reddit: '',
-            coins: Coin.find(),
+            image: 'url',
+            website: 'url',
+            facebook: 'url',
+            twitter: 'url',
+            reddit: 'url',
+            coins: (await Coin.find()).map(c => c.id),
             apiEndPoint: 'https://ftx.com/api/markets'
         }),
     ];
