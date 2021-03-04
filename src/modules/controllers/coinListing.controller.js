@@ -11,7 +11,9 @@ exports.getCoinRates = async (req, res) => {
 
 exports.triggerCoinDataFetchFromExchange = async (req, res) => {
   await coinListingService.fetchAllCoinsDataFromExchangesToDb()
+  const results = await coinListingService.getCoinListing()
   res.status(200).json({
+    data : results,
     status: true,
   })
 }
