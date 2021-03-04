@@ -8,9 +8,9 @@ const coinSchema = mongoose.Schema({
     },
     symbol: {
         type: String,
+        unique: true,
         required: [true, 'Symbol is required'],
     },
-
     is_active: {
         type: Boolean,
         required: [true, 'Status is required'],
