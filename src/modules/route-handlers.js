@@ -3,6 +3,7 @@ const userRoutes = require('./routes/users')
 const adminRoutes = require('./routes/admin')
 const blogRoutes = require("./routes/blog");
 const docsRoutes = require("./routes/docs")
+const coinListingRoutes = require("./routes/coinListing")
 const coinAnalysisRoutes = require('./routes/coinanalysis')
 
 module.exports = (app) => {
@@ -12,4 +13,5 @@ module.exports = (app) => {
     app.use("/v1/blog", blogRoutes)
     app.use("/v1/user", userRoutes)
     app.use("/v1/docs", docsRoutes)
+    app.use("/v1/coin-listing", coinListingRoutes)
 }
