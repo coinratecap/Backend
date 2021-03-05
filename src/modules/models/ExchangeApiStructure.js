@@ -12,9 +12,8 @@ const exchangeApiStructureSchema = mongoose.Schema({
         required: true,
         ref: 'Coin'
     },
-    endPointPath: {
+    endPointPathParam: {
         type: String,
-        required: true
     },
     queryParams: {
         type: Map,

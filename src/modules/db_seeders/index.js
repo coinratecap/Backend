@@ -1,11 +1,17 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const Coin = require("../models/Coin");
 const {
     seedCoins
 } = require("./coin");
 const {
     seedExchanges
-} = require('./exchangeApiStructure_copy')
+} = require('./exchange')
+const {
+    seedExchangeApiStructures
+} = require('./exchangeApiStructure')
+
+
 
 
 const initializeDb = async () => {
@@ -18,7 +24,7 @@ const initializeDb = async () => {
 
     await seedCoins()
     await seedExchanges()
-    await seedExchangeApiStrctures()
+    await seedExchangeApiStructures()
 
     await mongoose.disconnect()
 }
