@@ -1,26 +1,106 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample Rest-Api services docs",
+        "description": "This is a sample Rest-Api services docs for Cointrap projects",
         "version": "1.0.0",
         "title": "Swagger Documentation"
     },
     "host": "localhost:3000",
     "basePath": "/v1",
-    "tags": [
-        {
-            "name": "Exchange",
-            "description": "Add exchange coins given in body"
-        }
-    ],
     "schemes": [
         "http"
     ],
     "paths": {
+        "/admin": {
+            "get": {
+                "tags": [
+                    "Lists all admins"
+                ],
+                "summary": "Lists all admins",
+                "operationId": "listAdmins",
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "list of admins"
+                    },
+                    "400": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/admin/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "admin login into the system",
+                "operationId": "login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Wrong Login Details"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ]
+            }
+        },
+        "/admin/register": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "admin registeration into the system",
+                "operationId": "register",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Admin created"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/register"
+                        }
+                    }
+                ]
+            }
+        },
         "/admin/exchange": {
             "post": {
                 "tags": [
-                    "addExchange"
+                    "Exchange"
                 ],
                 "summary": "Add exchange coins given in body",
                 "operationId": "addExchangeCoin",
@@ -30,6 +110,11 @@
                 "produces": [
                     "application/json"
                 ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
                 "parameters": [
                     {
                         "in": "body",
@@ -41,9 +126,109 @@
                     }
                 ]
             }
+        },
+        "/admin/exchange/{id}": {
+            "put": {
+                "tags": [
+                    "Exchange"
+                ],
+                "summary": "Updates exchange coins given in body",
+                "operationId": "putExchangeCoin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/record"
+                        }
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Exchange"
+                ],
+                "summary": "Deletes exchange coins given as paramater",
+                "operationId": "deleteExchangeCoin",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "integer",
+                        "required": true
+                    }
+                ]
+            }
         }
     },
     "definitions": {
+        "login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "name"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "Volume"
+                }
+            }
+        },
+        "register": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "example": "Jack"
+                },
+                "lastname": {
+                    "type": "string",
+                    "example": "paul"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "jakc@mail.com"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+1 234 57382"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "laksdjlaskd"
+                }
+            }
+        },
         "record": {
             "type": "object",
             "properties": {

@@ -53,6 +53,27 @@ exports.fetchAllCoinsDataFromExchangesToDb = async (jobId = '1') => {
       allExchangeResults,
     )
     if (allExchangeResults.length == 0) continue
+    const volumeWeightedPrice = getVolumeWeightedPrice(allExchangeResults)
+    storeCoinDataIntoDb(coin, volumeWeightedPrice, jobId)
+    console.log(
+      'volume weighted price of ',
+      coin.symbol,
+      ' => ',
+      volumeWeightedPrice,
+    )
+  }
+}
+
+
+
+
+    console.log(
+      'all exchange results for coin : ',
+      coin.symbol,
+      ' => ',
+      allExchangeResults,
+    )
+    if (allExchangeResults.length == 0) continue
 
     // const coinPriceAndVolume = getAveragePriceAndVolume(allExchangeResults)
     // storeCoinDataIntoDb_2(coin, coinPriceAndVolume, jobId)
@@ -86,6 +107,7 @@ exports.fetchAllCoinsDataFromExchangesToDb = async (jobId = '1') => {
   }
 }
 
+
 exports.getCoinListing = async () => {
   const coinListingEntries = await CoinListing.find()
   const results = []
@@ -117,7 +139,9 @@ const getFullExchangeUrl = async (coinExchangeEndPoint) => {
 //coinExchangeResults : [Object]
 const getVolumeWeightedPrice = (coinExchangeResults) => {
 
+
   const  totalVolume = coinExchangeResults.reduce(
+
   totalVolume = coinExchangeResults.reduce(
     (previous, current, currentIndex) => {
       return previous + current.volume
@@ -139,6 +163,9 @@ const storeCoinDataIntoDb = (coin, coinAveragePrice, jobId) => {
     price: coinAveragePrice,
     jobId,
   }).save()
+
+}
+
 }
 
 // get average coin price
@@ -161,4 +188,5 @@ const storeCoinDataIntoDb_2 = (coin, coinPriceAndVolume, jobId) => {
 }
 
 }
+
 

@@ -12,10 +12,12 @@ const coinListingSchema = mongoose.Schema({
     type: Number,
     required: [true, 'coin value'],
   },
+
   volume: {
     type: Number,
     required: [true, 'coin volume'],
   },
+
   jobId: {
     type: String,
     required: false,
