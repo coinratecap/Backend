@@ -45,6 +45,29 @@ exports.fetchAllCoinsDataFromExchangesToDb = async (jobId = '1') => {
       }
     }
 
+
+    console.log(
+      'all exchange results for coin : ',
+      coin.symbol,
+      ' => ',
+      allExchangeResults,
+    )
+    if (allExchangeResults.length == 0) continue
+
+    // const coinPriceAndVolume = getAveragePriceAndVolume(allExchangeResults)
+    // storeCoinDataIntoDb_2(coin, coinPriceAndVolume, jobId)
+
+    const volumeWeightedPrice = getVolumeWeightedPrice(allExchangeResults)
+    storeCoinDataIntoDb(coin, volumeWeightedPrice, jobId)
+    console.log(
+      'volume weighted price of ',
+      coin.symbol,
+      ' => ',
+      volumeWeightedPrice,
+    )
+  }
+
+
     console.log(
       'all exchange results for coin : ',
       coin.symbol,
@@ -93,6 +116,8 @@ const getFullExchangeUrl = async (coinExchangeEndPoint) => {
 
 //coinExchangeResults : [Object]
 const getVolumeWeightedPrice = (coinExchangeResults) => {
+
+  const  totalVolume = coinExchangeResults.reduce(
   totalVolume = coinExchangeResults.reduce(
     (previous, current, currentIndex) => {
       return previous + current.volume
@@ -115,3 +140,25 @@ const storeCoinDataIntoDb = (coin, coinAveragePrice, jobId) => {
     jobId,
   }).save()
 }
+
+// get average coin price
+const getAveragePriceAndVolume = (coinExchangeResults) => {
+  const averagePrice = coinExchangeResults.reduce((total, next) => total + next.price, 0) / coinExchangeResults.length;
+  const averageVolume = coinExchangeResults.reduce((total, next) => total + next.volume, 0) / coinExchangeResults.length;
+  return {
+    averagePrice,
+    averageVolume
+  }
+}
+
+const storeCoinDataIntoDb_2 = (coin, coinPriceAndVolume, jobId) => {
+  new CoinListing({
+    coin,
+    price: coinPriceAndVolume.averagePrice,
+    volume: coinAverageVolume.averageVolume,
+    jobId,
+  }).save()
+}
+
+}
+
