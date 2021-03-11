@@ -52,8 +52,12 @@ exports.fetchAllCoinsDataFromExchangesToDb = async (jobId = '1') => {
       allExchangeResults,
     )
     if (allExchangeResults.length == 0) continue
+
+    const averageVolume =
+      allExchangeResults.reduce((total, next) => total + next.volume, 0) /
+      allExchangeResults.length
     const volumeWeightedPrice = getVolumeWeightedPrice(allExchangeResults)
-    storeCoinDataIntoDb(coin, volumeWeightedPrice, jobId)
+    storeCoinDataIntoDb(coin, volumeWeightedPrice, averageVolume, jobId)
     console.log(
       'volume weighted price of ',
       coin.symbol,
@@ -93,7 +97,7 @@ const getFullExchangeUrl = async (coinExchangeEndPoint) => {
 
 //coinExchangeResults : [Object]
 const getVolumeWeightedPrice = (coinExchangeResults) => {
-  totalVolume = coinExchangeResults.reduce(
+  const totalVolume = coinExchangeResults.reduce(
     (previous, current, currentIndex) => {
       return previous + current.volume
     },
@@ -108,9 +112,10 @@ const getVolumeWeightedPrice = (coinExchangeResults) => {
   return averagePrice
 }
 
-const storeCoinDataIntoDb = (coin, coinAveragePrice, jobId) => {
+const storeCoinDataIntoDb = (coin, averageVolume, coinAveragePrice, jobId) => {
   new CoinListing({
     coin,
+    volume: averageVolume,
     price: coinAveragePrice,
     jobId,
   }).save()

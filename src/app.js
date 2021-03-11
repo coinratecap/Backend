@@ -43,17 +43,17 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
     },
-  }),
-)
-app.use(passport.initialize())
-app.use(passport.session())
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Logging the user
 app.use((req, res, next) => {
-  console.log('user = ', req.user)
-  next()
-})
-require('./modules/route-handlers')(app)
+  console.log("user = ", req.user);
+  next();
+});
+require("./modules/route-handlers")(app);
 
 // app.use('/', usersRouter);
 // app.use('/admin', adminRouter);
