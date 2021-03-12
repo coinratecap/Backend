@@ -13,7 +13,10 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
 
-const { activateCron } = require("./utils/cron");
+const { activateCron, scheduleCron } = require("./utils/cron");
+const {
+  fetchAllCoinsDataFromExchangesToDb,
+} = require("./modules/services/coinListingService");
 
 const app = express();
 
@@ -75,7 +78,7 @@ app.use((err, req, res, next) => {
   res.render("error");
 });
 
+scheduleCron(fetchAllCoinsDataFromExchangesToDb);
 activateCron(10);
 
 module.exports = app;
-
