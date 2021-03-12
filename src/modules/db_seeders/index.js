@@ -13,7 +13,6 @@ const {
 
 
 
-
 const initializeDb = async () => {
     await mongoose.connect(process.env.DB_URL, {
         useUnifiedTopology: true,
