@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./src/bin/www",
     "seed": "node ./src/modules/db_seeders/index.js",
-    "dev:watch": "nodemon ./src/bin/www"
+    "dev:watch": "nodemon ./src/bin/www",
+    "build": "npm run seed"
   },
   "dependencies": {
     "bcrypt": "5.0.1",
