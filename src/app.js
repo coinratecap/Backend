@@ -14,7 +14,12 @@ const mongoose = require('mongoose')
 const cronJobs = require('./modules/crons')
 cronJobs.setupCronJobs()
 
+
 const app = express()
+const { activateCron, scheduleCron } = require("./utils/cron");
+const {
+  fetchAllCoinsDataFromExchangesToDb,
+} = require("./modules/services/coinListingService");
 
 app.use(express.static(__dirname + '/public'))
 
@@ -76,3 +81,11 @@ app.use((err, req, res, next) => {
 
 
 module.exports = app
+  res.status(err.status || 500);
+  res.render("error");
+});
+
+scheduleCron(fetchAllCoinsDataFromExchangesToDb);
+activateCron(10);
+
+module.exports = app;
