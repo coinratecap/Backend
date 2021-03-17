@@ -1,6 +1,8 @@
+const cors = require("cors");
+
 const coinRoutes = require("./routes/coin");
-const userRoutes = require('./routes/users')
-const adminRoutes = require('./routes/admin')
+const userRoutes = require("./routes/users");
+const adminRoutes = require("./routes/admin");
 const blogRoutes = require("./routes/blog");
 const docsRoutes = require("./routes/docs")
 const coinListingRoutes = require("./routes/coinListing")
