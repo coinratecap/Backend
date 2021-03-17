@@ -4,7 +4,7 @@ const uuid = require('uuid')
 
 exports.scheduleCron = () => {
   /// runs the function every 5 minutes
-  cron.schedule('*/1 * * * *', () => {
+  cron.schedule('*/5 * * * *', () => {
     const jobId = uuid.v4()
     console.log('Running fetchAllCoinsFromExchange cron job with job id : ' , jobId)
     coinListingService.fetchAllCoinsDataFromExchangesToDb(jobId)
