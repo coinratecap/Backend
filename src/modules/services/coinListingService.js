@@ -6,7 +6,7 @@ const jsonPath = require('jsonpath')
 const Exchange = require('../models/Exchange')
 const CoinListing = require('../models/CoinListing')
 
-exports.fetchAllCoinsDataFromExchangesToDb = async (jobId = '1') => {
+exports.fetchAllCoinsDataFromExchangesToDb = async (jobId) => {
   const allCoins = await Coin.find()
   for (let coinIndex in allCoins) {
     const coin = allCoins[coinIndex]

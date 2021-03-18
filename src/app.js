@@ -15,11 +15,6 @@ const cronJobs = require("./modules/crons");
 cronJobs.setupCronJobs();
 
 const app = express();
-const { activateCron, scheduleCron } = require("./utils/cron");
-const {
-  fetchAllCoinsDataFromExchangesToDb,
-} = require("./modules/services/coinListingService");
-
 app.use(express.static(__dirname + "/public"));
 
 // view engine setup
