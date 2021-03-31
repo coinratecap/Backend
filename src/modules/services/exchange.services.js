@@ -34,6 +34,10 @@ class ExchangeService {
     async delete(id) {
         return await Exchange.deleteOne({ _id: id })
     }
+    
+    async getAllExchanges(){
+        return await Exchange.find()
+    }
 }
 
 module.exports = new ExchangeService()
